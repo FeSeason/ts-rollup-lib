@@ -1,0 +1,40 @@
+{
+  "name": "ts-rollup-lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/seTools.cjs.js",
+  "module": "dist/seTools.esm.js",
+  "unpkg": "dist/seTools.global.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.0.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.58.0",
+    "rollup-plugin-live-server": "^2.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "typescript": "^4.4.4"
+  },
+  "scripts": {
+    "clean": "rimraf dist/**",
+    "typings": "tsc -p",
+    "dev": "cross-env NODE_ENV=development BUILD_ENV=dev rollup -c ./build/rollup.config.js -w",
+    "test": "npm run clean && cross-env NODE_ENV=production BUILD_ENV=test rollup -c",
+    "uat": "npm run clean && cross-env NODE_ENV=production BUILD_ENV=uat rollup -c",
+    "pro": "cross-env NODE_ENV=production BUILD_ENV=pro rollup -c ./build/rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:FeSeason/ts-rollup-lib.git"
+  },
+  "keywords": [],
+  "author": "season",
+  "license": "ISC"
+}

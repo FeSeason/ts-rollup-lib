@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IIFE Global 全局变量测试</title>
+  <style>
+    td { padding: 5px 10px; }
+  </style>
+</head>
+<body>
+  
+</body>
+
+<script type="module">
+  import pkg from './build/pkg.js'
+  const appendHeadScript = url => {
+    const script = document.createElement('script');
+    script.src = url;
+
+    document.head.appendChild(script)
+
+    script.onload = () => {
+      const lib = window[pkg.pkgName];
+      let htmlStr  = `<h3 style="padding-left: 20px"><b>包名</b>： ${pkg.pkgName}</h3>`;
+
+      Object.keys(lib).forEach((item, index) => {
+        htmlStr += `
+          <tr><td><b>[属性 ${index + 1}]</b>: ${item}</td> <td><b>[属性值]:</b> ${lib[item]}</td> <td><b>[类型]</b>: ${typeof lib[item]}</td></tr>
+        `
+      })
+
+      document.body.innerHTML = `
+        <table>${htmlStr}</table>
+      `
+    }
+  }
+  appendHeadScript(`./${pkg.pkgName}.global.js`)
+</script>
+</html>
